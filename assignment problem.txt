@@ -1,0 +1,49 @@
+
+Design and develop a responsive web page that displays cryptocurrency data in a grid layout. The data for this grid will be fetched from the provided API. You are required to focus on the user experience of the grid
+
+Data Source:
+
+You will be using the following API to fetch cryptocurrency data:
+
+api.coinlore.net/api/tickers/
+Note: The API provides information such as cryptocurrency name, symbol, price, rank, percentage change, and more. You may use this data to populate the grid
+
+Grid Features:
+
+Implement as many as grid features you can. Following are some examples of grid features which we are looking for:
+
+1. Searching
+
+2. Sorting
+
+3. Pagination
+
+4. Filtering
+
+5. Column swapping, etc.
+
+Feel free to add other features of your choice.
+
+Evaluation Criteria:
+
+Your submission will be evaluated on the following parameters:
+
+1. Look and feel of the grid
+
+2. Responsiveness
+
+3. No. of features implemented
+
+4. Effectiveness of the features
+
+5. Code quality
+
+6. API error handling
+
+Submission Guidelines:
+
+1. Please provide your submission as a ZIP file containing all relevant files (HTML, CSS, JS, etc.).
+
+2. (Optional) You can include a brief README file describing your submission (technologies used, features implemented, etc).
+
+Note: You are allowed to use any framework or library of your choice.
