@@ -10,22 +10,22 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   const [cryptoId,setCryptoId] = useState(null)
-  console.log(cryptoId)
   const [searchForm,setSearchForm] = useState({
     searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:"",filterPrice:""
   })
+  // retrieving data in first render
   useEffect(() => {
     axios.get('https://api.coinlore.net/api/tickers/')
       .then(response => setCryptoData(response.data.data))
       .catch(error => console.error('Error fetching data:', error));
   }, []);
 
-
+// filtering the data
   let filteredData = cryptoData.filter((item) =>
     item.name.toLowerCase().includes(searchForm.searchTerm.toLowerCase()) ||
     item.symbol.toLowerCase().includes(searchForm.searchTerm.toLowerCase())
   );
-
+// sorting the data
   const sortedData = [...filteredData].sort((a, b) => {
     if (searchForm.sortBy !== "") {
       const sortOrder = searchForm.sortDirection === "ascending" ? 1 : -1
@@ -34,27 +34,29 @@ function App() {
     return 0;
   });
 
-
+  // filtering again by terms of price and rank
   filteredData = searchForm.filterRank
     ? sortedData.filter((item) => item.rank <= searchForm.filterRank)
     : sortedData;
   const dataToDisplay = searchForm.filterPrice ? filteredData.filter(item => parseFloat(item.price_usd) <= parseFloat(searchForm.filterPrice)) : filteredData
   
+  // for pagination
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
+  // for changing form related to filtering and sorting 
   const handleSearchFormChnage=(e)=>{
     let {name,value} = e.target
     setSearchForm((preData)=>{
       return {...preData,[name]:value}
     })
   }
+  // clearing all search and sort
   const clearSort=()=>{
     setSearchForm(()=>{return {searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:"",filterPrice:""}})
   }
     return (
-    <div className="App mx-2">
+    <div className="App">
       <h1>Cryptocurrency Grid</h1>
       <div className="row">
         <input name='searchTerm' className='form-control mx-2 mb-3  col-sm' data-bs-theme="dark" type="text" placeholder="Search by name or symbol" value={searchForm.searchTerm} onChange={handleSearchFormChnage} /> 

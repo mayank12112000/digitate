@@ -5,7 +5,6 @@ const CryptoTable = ({ cryptoData, itemsPerPage, currentPage,setCryptoId }) => {
   const dataToDisplay = [...cryptoData].splice((currentPage-1)*10,itemsPerPage)
   return (
     <div className='row'>
-
     <table className="crypto-table container">
       <thead className='w-100'>
         <tr>

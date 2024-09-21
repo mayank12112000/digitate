@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function Modal({cryptoId}) {
     const [cryptoData,setCryptoData] = useState(null)
-    console.log(cryptoData)
+// fetching the details of the coin whenever the selected crypto id changes
     useEffect(()=>{
         axios.get(`https://api.coinlore.net/api/ticker/?id=${cryptoId}`)
         .then((res)=>setCryptoData(res.data[0]))

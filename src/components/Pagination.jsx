@@ -2,6 +2,7 @@ import React from 'react';
 
 const Pagination = ({ itemsPerPage, totalItems, onPageChange, currentPage }) => {
   const pageNumbers = [];
+  // calculating number of pages require to show the data
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
