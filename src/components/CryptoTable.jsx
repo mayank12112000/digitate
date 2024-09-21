@@ -1,8 +1,8 @@
 import React from 'react';
 
-const CryptoTable = ({ cryptoData }) => {
+const CryptoTable = ({ cryptoData, itemsPerPage, currentPage }) => {
   
-
+  const dataToDisplay = [...cryptoData].splice((currentPage-1)*10,itemsPerPage)
   return (
     <div className='row'>
 
@@ -17,7 +17,7 @@ const CryptoTable = ({ cryptoData }) => {
         </tr>
       </thead>
       <tbody >
-        {cryptoData.map((crypto) => (
+        {dataToDisplay.map((crypto) => (
           <tr key={crypto.id} className='w-100'>
             <td className='col-2'>{crypto.name}</td>
             <td className='col-2'>{crypto.symbol}</td>

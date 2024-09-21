@@ -8,7 +8,7 @@ const Pagination = ({ itemsPerPage, totalItems, onPageChange, currentPage }) => 
   console.log(totalItems,itemsPerPage)
 
   return (
-    <nav aria-label="Page navigation example" data-bs-theme="dark">
+    <nav aria-label="Page-navigation" data-bs-theme="dark">
       <ul className="pagination justify-content-end">
         {
           pageNumbers.map(number=>(
@@ -23,6 +23,3 @@ const Pagination = ({ itemsPerPage, totalItems, onPageChange, currentPage }) => 
 };
 
 export default Pagination;
-/**
-<li class="page-item"><a class="page-link"
-*/
