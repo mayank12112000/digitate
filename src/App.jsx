@@ -9,9 +9,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   const [searchForm,setSearchForm] = useState({
-    searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:null,filterPrice:null
+    searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:"",filterPrice:""
   })
-  const {searchTerm,sortBy,sortDirection,filterRank, filterPrice} = searchForm
   useEffect(() => {
     axios.get('https://api.coinlore.net/api/tickers/')
       .then(response => setCryptoData(response.data.data))
@@ -20,26 +19,24 @@ function App() {
 
 
   let filteredData = cryptoData.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.symbol.toLowerCase().includes(searchTerm.toLowerCase())
+    item.name.toLowerCase().includes(searchForm.searchTerm.toLowerCase()) ||
+    item.symbol.toLowerCase().includes(searchForm.searchTerm.toLowerCase())
   );
 
   const sortedData = [...filteredData].sort((a, b) => {
-    if (sortBy !== "") {
-      const sortOrder = sortDirection === "ascending" ? 1 : -1
-      return (sortOrder * parseFloat(a[sortBy]) ) -(sortOrder * parseFloat(b[sortBy]))
+    if (searchForm.sortBy !== "") {
+      const sortOrder = searchForm.sortDirection === "ascending" ? 1 : -1
+      return (sortOrder * parseFloat(a[searchForm.sortBy]) ) -(sortOrder * parseFloat(b[searchForm.sortBy]))
     }
     return 0;
   });
 
 
-  filteredData = filterRank
-    ? sortedData.filter((item) => item.rank <= filterRank)
+  filteredData = searchForm.filterRank
+    ? sortedData.filter((item) => item.rank <= searchForm.filterRank)
     : sortedData;
-  const dataToDisplay = filterPrice ? filteredData.filter(item => parseFloat(item.price_usd) <= parseFloat(filterPrice)) : filteredData
-  const clearSort=()=>{
-    setSearchForm({searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:null})
-  }
+  const dataToDisplay = searchForm.filterPrice ? filteredData.filter(item => parseFloat(item.price_usd) <= parseFloat(searchForm.filterPrice)) : filteredData
+  
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -50,23 +47,26 @@ function App() {
       return {...preData,[name]:value}
     })
   }
+  const clearSort=()=>{
+    setSearchForm(()=>{return {searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:"",filterPrice:""}})
+  }
   console.log(searchForm)
     return (
     <div className="App">
       <h1>Cryptocurrency Grid</h1>
       <div className="row">
-        <input name='searchTerm' className='form-control mx-2 mb-3  col-sm' data-bs-theme="dark" type="text" placeholder="Search by name or symbol" value={searchTerm} onChange={handleSearchFormChnage} /> 
-        <input name='filterRank' className='form-control mx-2 mb-3 col-sm' data-bs-theme="dark" type="number" placeholder="Filter by rank" onChange={handleSearchFormChnage} />
+        <input name='searchTerm' className='form-control mx-2 mb-3  col-sm' data-bs-theme="dark" type="text" placeholder="Search by name or symbol" value={searchForm.searchTerm} onChange={handleSearchFormChnage} /> 
+        <input value={searchForm.filterRank} name='filterRank' className='form-control mx-2 mb-3 col-sm' data-bs-theme="dark" type="number" placeholder="Filter by rank" onChange={handleSearchFormChnage} />
       </div>
       <div className="row">
-        <input name='filterPrice' className='form-control mx-2 mb-3 col-sm' data-bs-theme="dark" type="number" placeholder="Filter by price" onChange={handleSearchFormChnage} />
-        <select name="sortBy" value={sortBy} onChange={handleSearchFormChnage}  className='col-sm  mx-2 mb-3 form-select' data-bs-theme="dark" id="sortBy">
+        <input value={searchForm.filterPrice} name='filterPrice' className='form-control mx-2 mb-3 col-sm' data-bs-theme="dark" type="number" placeholder="Filter by price" onChange={handleSearchFormChnage} />
+        <select name="sortBy" value={searchForm.sortBy} onChange={handleSearchFormChnage}  className='col-sm  mx-2 mb-3 form-select' data-bs-theme="dark" id="sortBy">
           <option value={""}>Sort by: none</option>
           <option value="price_usd">Price</option>
           <option value="rank">Rank</option>
           <option value="percent_change_24h">Percent Change(24hr)</option>
         </select>
-        <select name="sortDirection" onChange={handleSearchFormChnage} value={sortDirection} className='col-sm  mx-2 mb-3 form-select' data-bs-theme="dark" id="sortBy">
+        <select name="sortDirection" onChange={handleSearchFormChnage} value={searchForm.sortDirection} className='col-sm  mx-2 mb-3 form-select' data-bs-theme="dark" id="sortBy">
           <option  value="ascending">Ascending</option>
           <option  value="descending">Descending</option>
         </select>
