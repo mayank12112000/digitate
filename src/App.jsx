@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 import axios from 'axios';
 import CryptoTable from './components/CryptoTable';
 import './App.css';
 import Pagination from './components/Pagination';
-import Modal from './components/Modal';
+const Modal = lazy(()=> import('./components/Modal'))
 
 function App() {
   const [cryptoData, setCryptoData] = useState([]);
@@ -56,9 +56,9 @@ function App() {
     setSearchForm(()=>{return {searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:"",filterPrice:""}})
   }
     return (
-    <div className="App">
-      <h1>Cryptocurrency Grid</h1>
-      <div className="row">
+    <div className="App my-3">
+      <h1> <img className='logo' src="https://cdn3.iconfinder.com/data/icons/cryptocurrency-35/100/cryptocurrency_bitcoin_blockchain_crypto-08-1024.png" alt="" /> Cryptocurrency Grid</h1>
+      <div className="row mt-3">
         <input name='searchTerm' className='form-control mx-2 mb-3  col-sm' data-bs-theme="dark" type="text" placeholder="Search by name or symbol" value={searchForm.searchTerm} onChange={handleSearchFormChnage} /> 
         <input value={searchForm.filterRank} name='filterRank' className='form-control mx-2 mb-3 col-sm' data-bs-theme="dark" type="number" placeholder="Filter by rank" onChange={handleSearchFormChnage} />
       </div>
