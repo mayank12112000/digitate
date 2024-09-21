@@ -13,7 +13,7 @@ body {
 }
 
 .crypto-table {
-  width: 100%;
+  /* width: 100%; */
   border-collapse: collapse;
   margin-top: 20px;
   background-color: #1f1f1f; /* Slightly lighter black for table contrast */
@@ -24,7 +24,6 @@ body {
 .crypto-table th, .crypto-table td {
   border: none; /* Remove borders for a cleaner look */
   padding: 12px;
-  text-align: center;
   cursor: pointer;
   color: #e0e0e0; /* Softer white */
 }
@@ -34,8 +33,6 @@ body {
   font-weight: bold;
   text-transform: uppercase;
 }
-
-
 
 .crypto-table tr:nth-child(even) {
   background-color: #2a2a2a; /* Light gray rows for alternating background */

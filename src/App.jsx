@@ -54,7 +54,7 @@ function App() {
     setSearchForm(()=>{return {searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:"",filterPrice:""}})
   }
     return (
-    <div className="App">
+    <div className="App mx-2">
       <h1>Cryptocurrency Grid</h1>
       <div className="row">
         <input name='searchTerm' className='form-control mx-2 mb-3  col-sm' data-bs-theme="dark" type="text" placeholder="Search by name or symbol" value={searchForm.searchTerm} onChange={handleSearchFormChnage} /> 
