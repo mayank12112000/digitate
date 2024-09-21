@@ -3,11 +3,14 @@ import axios from 'axios';
 import CryptoTable from './components/CryptoTable';
 import './App.css';
 import Pagination from './components/Pagination';
+import Modal from './components/Modal';
 
 function App() {
   const [cryptoData, setCryptoData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  const [cryptoId,setCryptoId] = useState(null)
+  console.log(cryptoId)
   const [searchForm,setSearchForm] = useState({
     searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:"",filterPrice:""
   })
@@ -50,7 +53,6 @@ function App() {
   const clearSort=()=>{
     setSearchForm(()=>{return {searchTerm:"",sortBy:"",sortDirection:"ascending",filterRank:"",filterPrice:""}})
   }
-  console.log(searchForm)
     return (
     <div className="App">
       <h1>Cryptocurrency Grid</h1>
@@ -78,6 +80,7 @@ function App() {
         cryptoData={dataToDisplay}
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}
+        setCryptoId={setCryptoId}
       />
 
       <Pagination
@@ -86,6 +89,7 @@ function App() {
         onPageChange={handlePageChange}
         currentPage={currentPage}
       />
+      <Modal cryptoId={cryptoId}/>
     </div>
   );
 }

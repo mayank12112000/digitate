@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CryptoTable = ({ cryptoData, itemsPerPage, currentPage }) => {
+const CryptoTable = ({ cryptoData, itemsPerPage, currentPage,setCryptoId }) => {
   
   const dataToDisplay = [...cryptoData].splice((currentPage-1)*10,itemsPerPage)
   return (
@@ -18,7 +18,7 @@ const CryptoTable = ({ cryptoData, itemsPerPage, currentPage }) => {
       </thead>
       <tbody >
         {dataToDisplay.map((crypto) => (
-          <tr key={crypto.id} className='w-100'>
+          <tr onClick={()=>setCryptoId(crypto.id)} data-bs-toggle="modal" data-bs-target="#exampleModal" key={crypto.id} className='w-100'>
             <td className='col-2'>{crypto.name}</td>
             <td className='col-2'>{crypto.symbol}</td>
             <td className='col-2'>{crypto.price_usd}</td>

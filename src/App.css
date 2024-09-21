@@ -54,4 +54,29 @@ body {
 .page-link{
     background-color: black !important;
     color: white;
+    cursor: pointer;
+}
+td, th{
+  padding-left: 1.5rem !important;
+  text-align: start !important;
+}
+
+.modal-table th, .modal-table td {
+  padding: 12px;
+  cursor: pointer;
+  color: white; /* Softer white */
+}
+
+.modal-table th {
+  background-color: #434242; /* Dark gray background for headers */
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.modal-table tr:nth-child(even) {
+  background-color: #2a2a2a; /* Light gray rows for alternating background */
+}
+
+.modal-table tr:hover {
+  background-color: #3b3b3b; /* Highlighted row on hover */
 }

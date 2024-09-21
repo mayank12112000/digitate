@@ -5,7 +5,6 @@ const Pagination = ({ itemsPerPage, totalItems, onPageChange, currentPage }) => 
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
-  console.log(totalItems,itemsPerPage)
 
   return (
     <nav className='my-3' aria-label="Page navigation example" data-bs-theme="dark">
@@ -13,7 +12,7 @@ const Pagination = ({ itemsPerPage, totalItems, onPageChange, currentPage }) => 
         {
           pageNumbers.map(number=>(
             <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
-              <a href="#!" className='page-link' onClick={() => onPageChange(number)}>{number}</a>
+              <a className='page-link' onClick={() => onPageChange(number)}>{number}</a>
             </li>
           ))
         }
