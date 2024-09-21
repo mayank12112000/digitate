@@ -23,7 +23,7 @@ const CryptoTable = ({ cryptoData, itemsPerPage, currentPage }) => {
             <td className='col-2'>{crypto.symbol}</td>
             <td className='col-2'>{crypto.price_usd}</td>
             <td className='col-2'>{crypto.rank}</td>
-            <td className='col-2'>{crypto.percent_change_24h}</td>
+            <td className={`col-2 ${parseFloat(crypto.percent_change_24h) <0? "text-danger":"text-success"}`}>{crypto.percent_change_24h}</td>
           </tr>
         ))}
       </tbody>

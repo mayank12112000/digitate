@@ -50,7 +50,8 @@ body {
     font-size: 0.9rem; /* Decrease font size for mobile */
   }
 
-  .pagination li a {
-    padding: 8px 10px; /* Adjust pagination buttons for mobile */
-  }
+}
+.page-link{
+    background-color: black !important;
+    color: white;
 }
